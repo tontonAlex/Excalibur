@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/arrete">
+        <file alias="arrete">arrete.svg</file>
+    </qresource>
+</RCC>

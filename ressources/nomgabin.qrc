@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/nomgabin">
+        <file alias="nomgabin">nomGabin.svg</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/spriteGabin2">
+        <file alias="spriteGabin2">armureGabin2.png</file>
+    </qresource>
+</RCC>

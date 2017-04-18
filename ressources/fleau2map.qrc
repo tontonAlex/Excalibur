@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/fleau">
+        <file alias="fleau2map">fleau3map.png</file>
+    </qresource>
+</RCC>

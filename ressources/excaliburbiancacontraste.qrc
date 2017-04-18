@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/excalibur">
+        <file alias="excaliburBiancaContraste">excaliburBianca2_contraste+-30.png</file>
+    </qresource>
+</RCC>

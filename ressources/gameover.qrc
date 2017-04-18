@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/gameover">
+        <file alias="gameover">GameOver.svg</file>
+    </qresource>
+</RCC>

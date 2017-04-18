@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/drole">
+        <file alias="drole">drole.svg</file>
+    </qresource>
+</RCC>

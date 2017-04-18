@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/tetebianca2">
+        <file alias="tetebianca2">BiancaTete2.png</file>
+    </qresource>
+</RCC>

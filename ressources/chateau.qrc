@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/chateau">
+        <file alias="chateau">chateauAlpha.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/dragon3">
+        <file alias="dragon3">dragon3.png</file>
+    </qresource>
+</RCC>

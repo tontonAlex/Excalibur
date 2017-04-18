@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/brice">
+        <file alias="brice">brice.png</file>
+    </qresource>
+</RCC>

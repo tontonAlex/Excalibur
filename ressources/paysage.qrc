@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/paysage">
+        <file alias="paysage">dessin-paysage-25.png</file>
+    </qresource>
+</RCC>

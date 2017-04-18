@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/excalibur">
+        <file alias="excaliburEnclume">excaliburEnclume1.png</file>
+    </qresource>
+</RCC>

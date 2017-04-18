@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/nuage">
+        <file alias="nuage">nuage.svg</file>
+    </qresource>
+</RCC>

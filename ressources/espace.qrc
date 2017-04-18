@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/espace">
+        <file alias="espace">espace.svg</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/nombianca">
+        <file alias="nombianca">nomBianca.svg</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/select">
+        <file alias="flechebas">flecheBas.svg</file>
+    </qresource>
+</RCC>

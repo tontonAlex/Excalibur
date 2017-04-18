@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/souris">
+        <file alias="souris">souris.svg</file>
+    </qresource>
+</RCC>

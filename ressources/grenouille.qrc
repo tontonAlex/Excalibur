@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/grenouille">
+        <file alias="grenouille">grenouille.png</file>
+    </qresource>
+</RCC>

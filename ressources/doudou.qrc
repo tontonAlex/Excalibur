@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/doudou">
+        <file alias="doudou">doudou2.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/cube">
+        <file alias="cube">cube.svg</file>
+    </qresource>
+</RCC>

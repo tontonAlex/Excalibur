@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/radhia">
+        <file alias="radhia">radhia.png</file>
+    </qresource>
+</RCC>

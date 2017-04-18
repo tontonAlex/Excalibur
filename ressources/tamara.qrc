@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/tamara">
+        <file alias="tamara">tamara.png</file>
+    </qresource>
+</RCC>
