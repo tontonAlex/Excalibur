@@ -12,6 +12,7 @@ class Gabin : public QGraphicsView
 public:
     explicit Gabin(QWidget *parent =0, MainWindow* mainW=0);
     void drawBackground(QPainter *painter, const QRectF &rect) override;
+    void grabGestures(const QList<Qt::GestureType> &gestures);
     ~Gabin();
 
     int pos = 0;
@@ -24,6 +25,14 @@ private:
 
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
+
+    qreal firstPos;
+    qreal updatepos;
+    int filtreTouchHaut = 0;
+    int filtreTouchBas = 0;
+
+protected:
+    bool event(QEvent *event) override;
 };
 
 #endif // GABIN_H

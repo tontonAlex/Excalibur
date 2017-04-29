@@ -18,6 +18,10 @@ class BiancaEnnemie;
 #define WindowMargin 39
 #define nbEnnemieMax 10
 
+#ifndef ANDROID
+    #define ANDROID
+#endif
+
 class MainWindow : public QWidget
 {
     Q_OBJECT
@@ -34,6 +38,7 @@ public:
     void removeBiancaGame(void);
     void displayBiancaName(void){nomBianca->setVisible(true);}
     void displayGabinName(void){nomGabin->setVisible(true);}
+    void grabGestures(const QList<Qt::GestureType> &gestures);
 
     void setGabinScreen(void);
     void createSpriteGabin(QGraphicsPixmapItem* sprite1, QGraphicsPixmapItem* sprite2, int pos);

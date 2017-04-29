@@ -77,6 +77,85 @@ void Gabin::keyReleaseEvent(QKeyEvent *event)
    hit = false;
 }
 
+bool Gabin::event(QEvent *event)
+{
+
+//    if (event->type() == QEvent::Gesture)
+//            return gestureEvent(static_cast<QGestureEvent*>(event));
+//        return QGraphicsView::event(event);
+
+    switch (event->type()) {
+        case QEvent::TouchBegin:
+        {
+            QTouchEvent *touchEvent = static_cast<QTouchEvent *>(event);
+            QList<QTouchEvent::TouchPoint> touchPoints = touchEvent->touchPoints();
+            const QTouchEvent::TouchPoint &touchPoint0 = touchPoints.first();
+            firstPos = touchPoint0.pos().y();
+
+            windows->setSpriteHitGabin(pos);
+            hit = true;
+            break;
+        }
+        case QEvent::TouchUpdate:
+        {
+        QTouchEvent *touchEvent = static_cast<QTouchEvent *>(event);
+        QList<QTouchEvent::TouchPoint> touchPoints = touchEvent->touchPoints();
+        const QTouchEvent::TouchPoint &touchPoint0 = touchPoints.first();
+            updatepos = touchPoint0.pos().y();
+//            if (((firstPos - updatepos) < 10) &&
+//                    ((firstPos - updatepos) > -10))
+//            {
+
+//            }
+            if ((firstPos - updatepos) > 10)
+            {
+                filtreTouchHaut++;
+                if (filtreTouchHaut == 4)
+                {
+                    filtreTouchHaut = 0;
+                    if (pos > 0)
+                    {
+                       pos--;
+                       windows->setSpriteGabin(pos);
+                    }
+                }
+            }
+            else if ((firstPos - updatepos) < -10)
+            {
+                filtreTouchBas++;
+                if (filtreTouchBas == 4)
+                {
+                    filtreTouchBas = 0;
+                    if (pos < 3)
+                    {
+                        pos++;
+                        windows->setSpriteGabin(pos);
+                    }
+                }
+            }
+            return true;
+        }
+        case QEvent::TouchEnd:
+        {
+            windows->setSpriteGabin(pos);
+            hit = false;
+        }
+        default:
+        {
+            return QGraphicsView::event(event);
+        }
+    }
+     //return QGraphicsView::event(event);
+}
+
+void Gabin::grabGestures(const QList<Qt::GestureType> &gestures)
+{
+    //! [enable gestures]
+    foreach (Qt::GestureType gesture, gestures)
+        grabGesture(gesture);
+    //! [enable gestures]
+}
+
 Gabin::~Gabin()
 {
 }

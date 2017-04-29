@@ -8,7 +8,7 @@ QT       += core gui svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = GameBiancaGabin
+TARGET = Excalibur
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -38,7 +38,7 @@ HEADERS  += mainwindow.h \
     gabinennemie.h \
     biancaennemie.h
 
-RC_ICONS = ressources/chateauAlpha.ico
+#RC_ICONS = ressources/chateauAlpha.ico
 
 RESOURCES += \
     ressources/excaliburfull.qrc \
@@ -52,8 +52,6 @@ RESOURCES += \
     ressources/nombianca.qrc \
     ressources/nomgabin.qrc \
     ressources/tetebianca.qrc \
-    ressources/spritegabin1.qrc \
-    ressources/spritegabin2.qrc \
     ressources/gameover.qrc \
     ressources/espace.qrc \
     ressources/nuage.qrc \
@@ -66,25 +64,86 @@ RESOURCES += \
     ressources/alex.qrc \
     ressources/kiwi.qrc \
     ressources/doudou.qrc \
-    ressources/dragon1.qrc \
-    ressources/dragon2.qrc \
-    ressources/dragon3.qrc \
-    ressources/dragon4.qrc \
     ressources/grenouille.qrc \
     ressources/poulet.qrc \
     ressources/ours.qrc \
-    ressources/tamara2.qrc \
-    ressources/fleau1.qrc \
-    ressources/fleau2.qrc \
-    ressources/fleau3.qrc \
-    ressources/fleau1map.qrc \
-    ressources/fleau2map.qrc \
-    ressources/fleau3map.qrc \
     ressources/cube.qrc \
-    ressources/tetebianca2.qrc \
     ressources/tetegabin.qrc \
     ressources/aie.qrc \
     ressources/drole.qrc \
     ressources/arrete.qrc \
     ressources/souris.qrc \
-    ressources/pasmoi.qrc
+    ressources/pasmoi.qrc \
+    ressources/fleauone.qrc \
+    ressources/fleauthreemap.qrc \
+    ressources/fleauthree.qrc \
+    ressources/fleautwomap.qrc \
+    ressources/fleautwo.qrc \
+    ressources/fleauonemap.qrc \
+    ressources/spritegabinone.qrc \
+    ressources/spritegabintwo.qrc \
+    ressources/tamaratwo.qrc \
+    ressources/tetebiancatwo.qrc \
+    ressources/dragonone.qrc \
+    ressources/dragontwo.qrc \
+    ressources/dragonfour.qrc \
+    ressources/dragonthree.qrc
+
+# You can also make your code fail to compile if you use deprecated APIs.
+# In order to do so, uncomment the following line.
+# You can also select to disable deprecated APIs only up to a certain version of Qt.
+#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
+
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    plugins/audio/libqtaudio_opensles.so \
+    plugins/bearer/libqandroidbearer.so \
+    plugins/canbus/libqtpeakcanbus.so \
+    plugins/canbus/libqttinycanbus.so \
+    plugins/geoservices/libqtgeoservices_esri.so \
+    plugins/geoservices/libqtgeoservices_mapbox.so \
+    plugins/geoservices/libqtgeoservices_nokia.so \
+    plugins/geoservices/libqtgeoservices_osm.so \
+    plugins/iconengines/libqsvgicon.so \
+    plugins/imageformats/libqgif.so \
+    plugins/imageformats/libqicns.so \
+    plugins/imageformats/libqico.so \
+    plugins/imageformats/libqjpeg.so \
+    plugins/imageformats/libqsvg.so \
+    plugins/imageformats/libqtga.so \
+    plugins/imageformats/libqtiff.so \
+    plugins/imageformats/libqwbmp.so \
+    plugins/imageformats/libqwebp.so \
+    plugins/mediaservice/libqtmedia_android.so \
+    plugins/platforms/android/libqtforandroid.so \
+    plugins/playlistformats/libqtmultimedia_m3u.so \
+    plugins/position/libqtposition_android.so \
+    plugins/position/libqtposition_positionpoll.so \
+    plugins/qmltooling/libqmldbg_debugger.so \
+    plugins/qmltooling/libqmldbg_inspector.so \
+    plugins/qmltooling/libqmldbg_local.so \
+    plugins/qmltooling/libqmldbg_native.so \
+    plugins/qmltooling/libqmldbg_profiler.so \
+    plugins/qmltooling/libqmldbg_quickprofiler.so \
+    plugins/qmltooling/libqmldbg_server.so \
+    plugins/qmltooling/libqmldbg_tcp.so \
+    plugins/sceneparsers/libgltfsceneio.so \
+    plugins/sensorgestures/libqtsensorgestures_plugin.so \
+    plugins/sensorgestures/libqtsensorgestures_shakeplugin.so \
+    plugins/sensors/libqtsensors_android.so \
+    plugins/sensors/libqtsensors_generic.so \
+    plugins/sqldrivers/libqsqlite.so \
+    plugins/video/videonode/libqtsgvideonode_android.so \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

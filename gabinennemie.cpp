@@ -21,19 +21,20 @@ GabinEnnemie::GabinEnnemie(QGraphicsScene* sceneGabin)
 //                     << ":/bernard/bernard"
 //                     << ":/radhia/radhia"
 //                     << ":/tamara/tamara"
-                     << ":/dragon1/dragon1"
-                     << ":/dragon2/dragon2"
-                     << ":/dragon3/dragon3"
-                     << ":/dragon4/dragon4"
+                     << ":/dragon1/dragonone"
+                     << ":/dragon2/dragontwo"
+                     << ":/dragon3/dragonthree"
+                     << ":/dragon4/dragonfour"
                      << ":/grenouille/grenouille"
                      << ":/poulet/poulet"
                      << ":/doudou/doudou"
                      << ":/ours/ours"
-                     << ":/tamara/tamara2";
+                     << ":/tamara/tamaratwo";
 
     ennemie = sceneGabin->addPixmap(QPixmap(ennemieRessource.at(qrand()%10)));
 
-    ennemie->setTransform(QTransform().scale(0.2, 0.2));
+    ennemie->setTransform(QTransform().scale(0.2*(qreal)((qreal)screenGeometry.height()/(qreal)768),
+                                             0.2*(qreal)((qreal)screenGeometry.height()/(qreal)768)));
     ennemie->setPos(screenGeometry.width()-WindowMargin,
                     posH*screenGeometry.height()/4);
 }
@@ -43,7 +44,7 @@ void GabinEnnemie::calculatepos(void)
 {
     pos = ennemie->pos();
 
-    pos.setX(pos.x()-5);
+    pos.setX(pos.x()-7);
     ennemie->setPos(pos);
 }
 

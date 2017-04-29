@@ -14,14 +14,18 @@ MainWindow::MainWindow()
     excalibur = new Excalibur(0, this);
     gabinGame = new Gabin(0, this);
 
-    QPixmap fleauPix = QPixmap(":/fleau/fleau1");
-    fleauPix.setMask(QBitmap(":/fleau/fleau1map"));
+#ifdef ANDROID
+    this->setAttribute(Qt::WA_AcceptTouchEvents, true);
+#endif
+
+    QPixmap fleauPix = QPixmap(":/fleau/fleauone");
+    fleauPix.setMask(QBitmap(":/fleau/fleauonemap"));
     fleau = QCursor(fleauPix);
-    QPixmap fleau1Pix = QPixmap(":/fleau/fleau2");
-    fleau1Pix.setMask(QBitmap(":/fleau/fleau2map"));
+    QPixmap fleau1Pix = QPixmap(":/fleau/fleautwo");
+    fleau1Pix.setMask(QBitmap(":/fleau/fleautwomap"));
     fleau1 = QCursor(fleau1Pix);
-    QPixmap fleau2Pix = QPixmap(":/fleau/fleau3");
-    fleau2Pix.setMask(QBitmap(":/fleau/fleau3map"));
+    QPixmap fleau2Pix = QPixmap(":/fleau/fleauthree");
+    fleau2Pix.setMask(QBitmap(":/fleau/fleauthreemap"));
     fleau2 = QCursor(fleau2Pix);
 
     biancaGame = new Bianca(0, this, fleau, fleau1, fleau2);
@@ -43,19 +47,56 @@ MainWindow::MainWindow()
     //this->displayGabinGame();
 }
 
+void MainWindow::grabGestures(const QList<Qt::GestureType> &gestures)
+{
+    //if (CurrentScreen == EXCALIBURSCREEN) {
+      excalibur->grabGestures(gestures);
+    //}
+    //else if (CurrentScreen == GABINSCREEN){
+       gabinGame->grabGestures(gestures);
+    /*}
+    else {
+
+    }*/
+}
+
 void MainWindow::setGabinScreen(void)
 {
     sceneGabin = new QGraphicsScene(this);
 
-    spriteGabin1pos1 = sceneGabin->addPixmap(QPixmap(":/spriteGabin1/spriteGabin1"));
-    spriteGabin1pos2 = sceneGabin->addPixmap(QPixmap(":/spriteGabin1/spriteGabin1"));
-    spriteGabin1pos3 = sceneGabin->addPixmap(QPixmap(":/spriteGabin1/spriteGabin1"));
-    spriteGabin1pos4 = sceneGabin->addPixmap(QPixmap(":/spriteGabin1/spriteGabin1"));
+    spriteGabin1pos1 = sceneGabin->addPixmap(QPixmap(":/spriteGabin1/spriteGabinone"));
+#ifdef ANDROID
+    spriteGabin1pos1->acceptTouchEvents();
+#endif
+    spriteGabin1pos2 = sceneGabin->addPixmap(QPixmap(":/spriteGabin1/spriteGabinone"));
+#ifdef ANDROID
+    spriteGabin1pos2->acceptTouchEvents();
+#endif
+    spriteGabin1pos3 = sceneGabin->addPixmap(QPixmap(":/spriteGabin1/spriteGabinone"));
+#ifdef ANDROID
+    spriteGabin1pos3->acceptTouchEvents();
+#endif
+    spriteGabin1pos4 = sceneGabin->addPixmap(QPixmap(":/spriteGabin1/spriteGabinone"));
+#ifdef ANDROID
+    spriteGabin1pos4->acceptTouchEvents();
+#endif
 
-    spriteGabin2pos1 = sceneGabin->addPixmap(QPixmap(":/spriteGabin2/spriteGabin2"));
-    spriteGabin2pos2 = sceneGabin->addPixmap(QPixmap(":/spriteGabin2/spriteGabin2"));
-    spriteGabin2pos3 = sceneGabin->addPixmap(QPixmap(":/spriteGabin2/spriteGabin2"));
-    spriteGabin2pos4 = sceneGabin->addPixmap(QPixmap(":/spriteGabin2/spriteGabin2"));
+    spriteGabin2pos1 = sceneGabin->addPixmap(QPixmap(":/spriteGabin2/spriteGabintwo"));
+#ifdef ANDROID
+    spriteGabin2pos1->acceptTouchEvents();
+#endif
+    spriteGabin2pos2 = sceneGabin->addPixmap(QPixmap(":/spriteGabin2/spriteGabintwo"));
+#ifdef ANDROID
+    spriteGabin2pos2->acceptTouchEvents();
+#endif
+    spriteGabin2pos3 = sceneGabin->addPixmap(QPixmap(":/spriteGabin2/spriteGabintwo"));
+#ifdef ANDROID
+    spriteGabin2pos3->acceptTouchEvents();
+#endif
+    spriteGabin2pos4 = sceneGabin->addPixmap(QPixmap(":/spriteGabin2/spriteGabintwo"));
+#ifdef ANDROID
+    spriteGabin2pos4->acceptTouchEvents();
+#endif
     //taille originale 2414*2242
     //screenGeometry= 1366*768
     createSpriteGabin(spriteGabin1pos1, spriteGabin2pos1, 0);
@@ -107,26 +148,34 @@ void MainWindow::setBiancaScreen(void)
     biancaGame->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
     //biancaGame->setDragMode(QGraphicsView::ScrollHandDrag);
 
+    qreal ratio = (qreal)((qreal)screenGeometry.height()/(qreal)768);
     cube = new QGraphicsSvgItem(":/cube/cube");
+    cube->setTransform(QTransform().scale(ratio,
+                                          ratio));
     sceneBianca->addItem(cube);
-    cube->setPos((qreal)(screenGeometry.width()-cube->boundingRect().width())/2,
-                  (qreal)screenGeometry.height()/14.56);
+    cube->setPos(((qreal)(screenGeometry.width()-cube->boundingRect().width()*ratio)/2),
+                  ((qreal)((qreal)screenGeometry.height()/(qreal)14.56)*ratio));
 
-    trous << QRectF((qreal)(screenGeometry.width())/2-30,
-                          (qreal)(screenGeometry.height())/2-(qreal)(screenGeometry.height()/2.8)+160,/*-100*/
-                          110, 85);
-    trous <<  QRectF((qreal)(screenGeometry.width())/2-140,
-                   (qreal)(screenGeometry.height())/2-(qreal)(screenGeometry.height()/2.8),/*260*/
-                   110, 85);
-    trous << QRectF((qreal)(screenGeometry.width())/2+270,
-                   (qreal)(screenGeometry.height())/2-(qreal)(screenGeometry.height()/2.8),/*260*/
-                   110, 85);
-    trous << QRectF((qreal)(screenGeometry.width())/2-360,
-                   (qreal)(screenGeometry.height())/2-(qreal)(screenGeometry.height()/2.8)+300,/*+40*/
-                   110, 85);
-    trous << QRectF((qreal)(screenGeometry.width())/2+140,
-                   (qreal)(screenGeometry.height())/2-(qreal)(screenGeometry.height()/2.8)+300,/*+40*/
-                   110, 85);
+    trous << QRectF((qreal)((qreal)(screenGeometry.width())/(qreal)2)-30*ratio,
+                   (qreal)((qreal)(screenGeometry.height())/(qreal)2)*ratio-(qreal)(screenGeometry.height()/2.8)*ratio+160*ratio,/*-100*/
+                    110*ratio,
+                    85*ratio);
+    trous <<  QRectF((qreal)((qreal)(screenGeometry.width())/(qreal)2)-140*ratio,
+                   (qreal)((qreal)(screenGeometry.height())/(qreal)2)*ratio-(qreal)(screenGeometry.height()/2.8)*ratio,/*260*/
+                   110*ratio,
+                   85*ratio);
+    trous << QRectF((qreal)((qreal)(screenGeometry.width())/(qreal)2)+270*ratio,
+                   (qreal)((qreal)(screenGeometry.height())/(qreal)2)*ratio-(qreal)(screenGeometry.height()/2.8)*ratio,/*260*/
+                   110*ratio,
+                   85*ratio);
+    trous << QRectF((qreal)((qreal)(screenGeometry.width())/(qreal)2)-360*ratio,
+                   (qreal)((qreal)(screenGeometry.height())/(qreal)2)*ratio-(qreal)(screenGeometry.height()/2.8)*ratio+300*ratio,/*+40*/
+                   110*ratio,
+                   85*ratio);
+    trous << QRectF((qreal)((qreal)(screenGeometry.width())/(qreal)2)+140*ratio,
+                   (qreal)((qreal)(screenGeometry.height())/(qreal)2)*ratio-(qreal)(screenGeometry.height()/2.8)*ratio+300*ratio,/*+40*/
+                   110*ratio,
+                   85*ratio);
 
     trouCentre = new QGraphicsEllipseItem(trous.at(0));
     trouCentre->setBrush(Qt::black);
@@ -151,7 +200,12 @@ void MainWindow::setBiancaScreen(void)
     aie << new QGraphicsSvgItem(":/aie/aie")
         << new QGraphicsSvgItem(":/arrete/arrete")
         << new QGraphicsSvgItem(":/drole/drole");
-
+    aie.at(0)->setTransform(QTransform().scale(ratio,
+                                               ratio));
+    aie.at(1)->setTransform(QTransform().scale(ratio,
+                                               ratio));
+    aie.at(2)->setTransform(QTransform().scale(ratio,
+                                               ratio));
     sceneBianca->addItem(aie.at(0));
     sceneBianca->addItem(aie.at(1));
     sceneBianca->addItem(aie.at(2));
@@ -161,7 +215,8 @@ void MainWindow::setBiancaScreen(void)
 
     gameOverBiancaTxt = new QGraphicsSvgItem(":/gameover/gameover");
     gameOverBiancaTxt->setPos((screenGeometry.width()-5*WindowMargin)/2,
-                     (screenGeometry.height()-8*WindowMargin)/2);
+                              trouCentre->scenePos().y());
+                     //(screenGeometry.height()-8*WindowMargin)/2);
     sceneBianca->addItem(gameOverBiancaTxt);
     gameOverBiancaTxt->setVisible(false);
 
@@ -170,6 +225,8 @@ void MainWindow::setBiancaScreen(void)
     sceneBianca->addItem(souris);
 
     pasmoi = new QGraphicsSvgItem(":/pasmoi/pasmoi");
+    pasmoi->setTransform(QTransform().scale(ratio,
+                                            ratio));
     sceneBianca->addItem(pasmoi);
     pasmoi->setVisible(false);
 }
@@ -178,30 +235,42 @@ void MainWindow::setSelectScreen(void)
 {
     scene = new QGraphicsScene(this);
 
-
     ExcaliburFull = scene->addPixmap(QPixmap(":/excalibur/excaliburFull"));
 
-    ExcaliburFull->setPos(screenGeometry.width()-463,
-                          (screenGeometry.height()-QImage(":/chateau/chateau").height())/2+26);
+    ExcaliburFull->setPos((qreal)((qreal)768/(qreal)screenGeometry.height())*80+screenGeometry.width()-463,
+                          (qreal)((qreal)768/(qreal)screenGeometry.height())*70+(screenGeometry.height()-QImage(":/chateau/chateau").height())/2+26);
                           //90.0);
-    ExcaliburFull->setTransform(QTransform().scale(0.2, 0.2));
+    ExcaliburFull->setTransform(QTransform().scale(0.2*(qreal)((qreal)screenGeometry.height()/(qreal)768),
+                                                   0.2*(qreal)((qreal)screenGeometry.height()/(qreal)768)));
     ExcaliburFull->setCacheMode(QGraphicsItem::ItemCoordinateCache);
     ExcaliburFull->setVisible(true);
 
     ExcaliburBianca = scene->addPixmap(QPixmap(":/excalibur/excaliburBiancaContraste"));
-    ExcaliburBianca->setPos(screenGeometry.width()-453,
-                           (screenGeometry.height()-QImage(":/chateau/chateau").height())/2+32);
+#ifdef ANDROID
+    ExcaliburBianca->acceptTouchEvents();
+#endif
+    ExcaliburBianca->setPos((qreal)((qreal)768/(qreal)screenGeometry.height())*80+screenGeometry.width()-463,
+                            (qreal)((qreal)768/(qreal)screenGeometry.height())*70+(screenGeometry.height()-QImage(":/chateau/chateau").height())/2+26);
+            /*(screenGeometry.width()-453,
+                           (screenGeometry.height()-QImage(":/chateau/chateau").height())/2+32);*/
                             //96.0);
     ExcaliburBianca->setCacheMode(QGraphicsItem::ItemCoordinateCache);
-    ExcaliburBianca->setTransform(QTransform().scale(0.2, 0.2));
+    ExcaliburBianca->setTransform(QTransform().scale(0.2*(qreal)((qreal)screenGeometry.height()/(qreal)768),
+                                                     0.2*(qreal)((qreal)screenGeometry.height()/(qreal)768)));
     ExcaliburBianca->setVisible(false);
 
     ExcaliburGabin = scene->addPixmap(QPixmap(":/excalibur/excaliburGabinContraste"));
-    ExcaliburGabin->setPos(screenGeometry.width()-398,
-                          (screenGeometry.height()-QImage(":/chateau/chateau").height())/2+172);
+#ifdef ANDROID
+    ExcaliburGabin->acceptTouchEvents();
+#endif
+    ExcaliburGabin->setPos((qreal)((qreal)768/(qreal)screenGeometry.height())*80+screenGeometry.width()-463,
+                           (qreal)((qreal)768/(qreal)screenGeometry.height())*70+(screenGeometry.height()-QImage(":/chateau/chateau").height())/2+26);
+            /*(screenGeometry.width()-398,
+                          (screenGeometry.height()-QImage(":/chateau/chateau").height())/2+172);*/
                            //236.0);
     ExcaliburGabin->setCacheMode(QGraphicsItem::ItemCoordinateCache);
-    ExcaliburGabin->setTransform(QTransform().scale(0.2, 0.2));
+    ExcaliburGabin->setTransform(QTransform().scale(0.2*(qreal)((qreal)screenGeometry.height()/(qreal)768),
+                                                    0.2*(qreal)((qreal)screenGeometry.height()/(qreal)768)));
     ExcaliburGabin->setVisible(false);
 
     selectPlayer = new QGraphicsSvgItem(":/select/select");
@@ -218,11 +287,16 @@ void MainWindow::setSelectScreen(void)
     flecheBas->setVisible(true);
 
     nomBianca = new QGraphicsSvgItem(":/nombianca/nombianca");
-    nomBianca->setPos(screenGeometry.width()-415, 10);
+    nomBianca->setPos(((qreal)768/(qreal)screenGeometry.height())*60+screenGeometry.width()-415, 10);
+    nomBianca->setTransform(QTransform().scale(0.6*(qreal)((qreal)768/(qreal)screenGeometry.height()),
+                                                    0.6*(qreal)((qreal)768/(qreal)screenGeometry.height())));
     scene->addItem(nomBianca);
     nomBianca->setVisible(false);
     nomGabin = new QGraphicsSvgItem(":/nomgabin/nomgabin");
-    nomGabin->setPos(screenGeometry.width()-415, (screenGeometry.height()-nomGabin->boundingRect().height()*3));
+    nomGabin->setPos(((qreal)768/(qreal)screenGeometry.height())*60+screenGeometry.width()-415,
+                     (screenGeometry.height()-nomGabin->boundingRect().height()*2));
+    nomGabin->setTransform(QTransform().scale(0.6*(qreal)((qreal)768/(qreal)screenGeometry.height()),
+                                                    0.6*(qreal)((qreal)768/(qreal)screenGeometry.height())));
     scene->addItem(nomGabin);
     nomGabin->setVisible(false);
 
@@ -263,7 +337,7 @@ void MainWindow::DisplaySelectScreen(void)
     excalibur->setFocus();
     CurrentScreen = EXCALIBURSCREEN;
 
-    timerFlechesSelect->start(50);
+    timerFlechesSelect->start(80);
 }
 
 
@@ -457,11 +531,12 @@ void MainWindow::paintEvent(QPaintEvent *event)
              flecheBasGabin->setVisible(false);
              espaceCommand->setVisible(false);
          }
-         if (DelayEntreEnnemie > 50)
+         if (DelayEntreEnnemie > 60)
          {
              //creation d'un ennemie
              DelayEntreEnnemie = 0;
              ListEnnemies.append(new GabinEnnemie(sceneGabin));
+             ListEnnemies.last()->ennemie->setCacheMode(QGraphicsItem::ItemCoordinateCache);
              sceneGabin->addItem(ListEnnemies.last()->ennemie);
              qDebug("addItem %d", ListEnnemies.size());
          }
