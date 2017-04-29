@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/dragon2">
-        <file alias="dragon2">dragon2.png</file>
+        <file alias="dragontwo">dragon2.png</file>
     </qresource>
 </RCC>

@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/fleau">
-        <file alias="fleau2map">fleau3map.png</file>
+        <file alias="fleauone">fleau2.png</file>
     </qresource>
 </RCC>
